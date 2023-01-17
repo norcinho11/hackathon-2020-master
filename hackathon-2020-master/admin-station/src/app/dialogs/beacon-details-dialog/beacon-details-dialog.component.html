@@ -1,0 +1,21 @@
+<h2 mat-dialog-title>{{data.name}}</h2>
+<mat-dialog-content class="mat-typography">
+  <h3>Beacon uid</h3>
+  <p>{{data.uid}}</p>
+
+  <h3>Event name</h3>
+  <p>{{data.eventName}}</p>
+  <h3>Image</h3>
+  <div>
+    <img class="mx-auto my-2" src="{{data.url}}" alt="image at full size">
+  </div>
+
+  <h3>Description</h3>
+  <p>{{data.description}}</p>
+
+  <span *ngIf="data.freeAccess">&#10003; Is with free access.</span>
+  <span *ngIf="data.lastBeacon">&#10003; Last beacon.</span>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-raised-button color="primary" (click)="cancel()">Cancel</button>
+</mat-dialog-actions>

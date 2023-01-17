@@ -1,0 +1,103 @@
+<h1 mat-dialog-title>
+  <mat-icon color="primary" aria-hidden="false" aria-label="Example home icon"
+  >bluetooth
+  </mat-icon
+  >
+  Beacon
+</h1>
+<mat-dialog-content *ngIf="beacon">
+      <div class="row">
+        <mat-form-field appearance="outline" class="col" *ngIf="beacon?.id">
+          <mat-label>Beacon Id</mat-label>
+          <input
+            [ngModelOptions]="{ standalone: true }"
+            [(ngModel)]="beacon.id"
+            matInput
+            placeholder="id"
+            disabled
+          />
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="col">
+          <mat-label>Event name</mat-label>
+          <input
+            [ngModelOptions]="{ standalone: true }"
+            [(ngModel)]="beacon.eventName"
+            matInput
+            required
+            placeholder="Event"
+          />
+        </mat-form-field>
+      </div>
+      <div class="row">
+        <mat-form-field appearance="outline" class="col">
+          <mat-label>Beacon Uid</mat-label>
+          <input
+            [ngModelOptions]="{ standalone: true }"
+            [(ngModel)]="beacon.uid"
+            matInput
+            required
+            placeholder="uid"
+          />
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="col">
+          <mat-label>Name</mat-label>
+          <input
+            [ngModelOptions]="{ standalone: true }"
+            placeholder="Enter name"
+            aria-label="name"
+            matInput
+            name="name"
+            [(ngModel)]="beacon.name"
+            required
+          />
+        </mat-form-field>
+      </div>
+      <div class="row">
+        <mat-form-field appearance="outline" class="col">
+          <mat-label>Description</mat-label>
+          <textarea
+            [ngModelOptions]="{ standalone: true }"
+            placeholder="Enter description"
+            aria-label="description"
+            matInput
+            name="description"
+            [(ngModel)]="beacon.description"
+            required
+          >
+          </textarea>
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="col">
+          <mat-label>Type</mat-label>
+          <mat-select [(ngModel)]="beacon.type">
+            <mat-option *ngFor="let type of types" [value]="type.value">
+              {{ type.viewValue }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="row px-3">
+        <mat-checkbox class="col"
+          [(ngModel)]="beacon.freeAccess"
+          [checked]="beacon.freeAccess && beacon.type == 0"
+          [disabled]="beacon.type != 0"
+        >Free Access
+        </mat-checkbox>
+        <mat-checkbox class="col"
+          [(ngModel)]="beacon.lastBeacon"
+          [checked]="beacon.lastBeacon && beacon.type == 0"
+          [disabled]="beacon.type != 0"
+        >Is last
+        </mat-checkbox>
+      </div>
+      <div class="px-3 mx-auto">
+        <ngp-image-picker class="mx-auto"
+          [_imageSrc]="beacon.url"
+          [_config]="imagePickerConf"
+          ($imageChanged)="onImageChange($event)"
+        ></ngp-image-picker>
+      </div>
+</mat-dialog-content>
+<mat-dialog-actions>
+    <button mat-raised-button color="primary" (click)="cancel()">Cancel</button>
+    <button mat-raised-button color="primary" (click)="onSubmit()">Save</button>
+  </mat-dialog-actions>

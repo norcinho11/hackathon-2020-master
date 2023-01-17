@@ -1,0 +1,178 @@
+<div class="mb-2 mt-5">
+  <div class="middle container" *ngIf="this.cardMessageShown" [@inOutAnimation]>
+    <mat-card id="warningCard" style="background-color: #ffe3e6; margin-bottom: 10px;"
+              class=" mat-elevation-z4 col-xl-6 col-lg-6 col-md-8 col-sm-12 col-xs-12">
+      <mat-card-content class="">
+        <div class="w-100 row">
+          <div class="col-8" style="margin-bottom: 0">
+            <p style="margin-bottom: 0">{{this.cardMessage}}</p></div>
+          <div class="col-4">
+            <button (click)="this.hideCard()" type="button" class="close" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  <div class="container middle">
+    <mat-card class=" mat-elevation-z4 col-xl-6 col-lg-6 col-md-8 col-sm-12 col-xs-12" style="margin-bottom: 20px">
+      <mat-card-header class="middle w-100">
+        <mat-card-title><h2>Sign up</h2></mat-card-title>
+      </mat-card-header>
+      <mat-card-content class="middle">
+        <form id="ngForm" [formGroup]="service.formModel" autocomplete="off" (submit)="onSubmit()">
+          <div class="row padding">
+            <mat-form-field appearance="outline" class="col-lg-12 col-md-12">
+              <mat-label>User name</mat-label>
+              <input placeholder="Enter your user name" minlength="1" maxlength="255" matInput
+                     formControlName="UserName" required>
+              <mat-error class="text-danger"
+                         *ngIf="service.formModel.get('UserName').touched && service.formModel.get('UserName').errors?.required">
+                This
+                field is mandatory.
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div class="row padding">
+            <mat-form-field appearance="outline" class="col-lg-12 col-md-12">
+              <mat-label>Full name</mat-label>
+              <input placeholder="Enter your name and surname" minlength="1" maxlength="255" matInput
+                     formControlName="FullName" required>
+              <mat-error class="text-danger"
+                         *ngIf="service.formModel.get('FullName').touched && service.formModel.get('FullName').errors?.required">
+                This
+                field is mandatory.
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div class="row padding">
+            <mat-form-field appearance="outline" class="col-lg-12 col-md-12">
+              <mat-label>E-mail</mat-label>
+              <input placeholder="Enter your e-mail" minlength="1" maxlength="255" matInput formControlName="Email"
+                     required>
+              <mat-error class="text-danger"
+                         *ngIf="service.formModel.get('Email').touched && service.formModel.get('Email').errors?.required">
+                This
+                field is mandatory.
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div formGroupName="Passwords">
+            <div class="row padding">
+              <mat-form-field appearance="outline" class="col-lg-12 col-md-12">
+                <mat-label>Password</mat-label>
+                <input placeholder="Enter your password" minlength="1" maxlength="255" matInput
+                       name="Password" formControlName="Password" [type]="hidePassword ? 'password' : 'text'" required>
+                <mat-icon matSuffix
+                          (click)="hidePassword = !hidePassword">{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+                <mat-error class="text-danger"
+                           *ngIf="service.formModel.get('Passwords.Password').touched && service.formModel.get('Passwords.Password').errors?.required">
+                  This
+                  field is mandatory.
+                </mat-error>
+                <mat-error class="text-danger"
+                           *ngIf="service.formModel.get('Passwords.Password').touched && service.formModel.get('Passwords.Password').errors?.minlength">
+                  Minimum
+                  4 characters required.
+                </mat-error>
+              </mat-form-field>
+            </div>
+            <div class="row padding">
+              <mat-form-field appearance="outline" class="col-lg-12 col-md-12">
+                <mat-label>Confirm password</mat-label>
+                <input placeholder="Enter your password again" minlength="1" maxlength="255" matInput
+                       name="ConfirmPassword" formControlName="ConfirmPassword"
+                       [type]="hidePassword ? 'password' : 'text'" required>
+                <mat-icon matSuffix
+                          (click)="hidePassword = !hidePassword">{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+                <mat-error class="text-danger"
+                           *ngIf="service.formModel.get('Passwords.ConfirmPassword').touched && service.formModel.get('Passwords.ConfirmPassword').errors?.required">
+                  This
+                  field is mandatory.
+                </mat-error>
+                <mat-error class="text-danger"
+                           *ngIf="service.formModel.get('Passwords.ConfirmPassword').touched && service.formModel.get('Passwords.ConfirmPassword').errors?.passwordMismatch">
+                  Confirm
+                  Password does not match.
+                </mat-error>
+              </mat-form-field>
+            </div>
+          </div>
+        </form>
+      </mat-card-content>
+      <mat-card-actions class="middle" style="margin-bottom: 5px">
+        <button form="ngForm" type="submit" mat-raised-button color="primary">Sign me up</button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+  <div class="container middle">
+    <mat-card style=" margin-bottom: 10px"
+              class=" mat-elevation-z4 col-xl-6 col-lg-6 col-md-8 col-sm-12 col-xs-12">
+      <mat-card-content class="middle">
+        <p>Already have an account? <a style="cursor: pointer" [routerLink]="" (click)="redirectToSignIn()">Sign in</a>.
+        </p>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>
+
+<!--
+  <form [formGroup]="service.formModel" autocomplete="off" (submit)="onSubmit()">
+    <div class="form-group">
+      <label>Employee Position</label>
+      <select class="form-control" formControlName="EmployeePosition" required>
+        <option *ngFor="let pow of positions" [value]="pow">{{pow}}</option>
+      </select>
+      <label class="text-danger"
+             *ngIf="service.formModel.get('EmployeePosition').touched && service.formModel.get('EmployeePosition').errors?.required">This
+        field is mandatory.</label>
+    </div>
+    <div class="form-group required">
+      <label>Username</label>
+      <input class="form-control" formControlName="UserName">
+      <label class="text-danger"
+             *ngIf="service.formModel.get('UserName').touched && service.formModel.get('UserName').errors?.required">This
+        field is mandatory.</label>
+    </div>
+    <div class="form-group">
+      <label>Email</label>
+      <input class="form-control" formControlName="Email">
+      <label class="text-danger"
+             *ngIf="service.formModel.get('Email').touched && service.formModel.get('Email').errors?.email">Invalid
+        email address.</label>
+    </div>
+    <div class="form-group">
+      <label>Full Name</label>
+      <input class="form-control" formControlName="FullName">
+    </div>
+    <div formGroupName="Passwords">
+      <div class="form-group required">
+        <label>Password</label>
+        <input type="password" class="form-control" formControlName="Password">
+        <label class="text-danger"
+               *ngIf="service.formModel.get('Passwords.Password').touched && service.formModel.get('Passwords.Password').errors?.required">This
+          field is mandatory.</label>
+        <label class="text-danger"
+               *ngIf="service.formModel.get('Passwords.Password').touched && service.formModel.get('Passwords.Password').errors?.minlength">Minimum
+          4 characters required.</label>
+      </div>
+      <div class="form-group required">
+        <label>Confirm Password</label>
+        <input type="password" class="form-control" formControlName="ConfirmPassword">
+        <label class="text-danger"
+               *ngIf="service.formModel.get('Passwords.ConfirmPassword').touched && service.formModel.get('Passwords.ConfirmPassword').errors?.required">This
+          field is mandatory.</label>
+        <label class="text-danger"
+               *ngIf="service.formModel.get('Passwords.ConfirmPassword').touched && service.formModel.get('Passwords.ConfirmPassword').errors?.passwordMismatch">Confirm
+          Password does not match.</label>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-8 offset-md-2">
+        <button type="submit" class="btn btn-lg btn-block" [disabled]="!service.formModel.valid">Sign Up</button>
+      </div>
+    </div>
+  </form>
+</
+-->

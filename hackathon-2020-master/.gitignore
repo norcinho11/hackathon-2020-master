@@ -1,0 +1,90 @@
+# See http://help.github.com/ignore-files/ for more about ignoring files.
+
+# compiled output
+/admin-station/dist
+/admin-station/tmp
+/admin-station/out-tsc
+# Only exists if Bazel was run
+/admin-station/bazel-out
+
+# dependencies
+/admin-station/node_modules
+
+# profiling files
+/admin-stationchrome-profiler-events*.json
+/admin-stationspeed-measure-plugin*.json
+
+# IDEs and editors
+/admin-station/.idea
+/admin-station.project
+/admin-station.classpath
+/admin-station.c9/
+*.launch
+/admin-station/.settings/
+*.sublime-workspace
+
+# IDE - VSCode
+/admin-station/.vscode/*
+/admin-station/!.vscode/settings.json
+/admin-station/!.vscode/tasks.json
+/admin-station/!.vscode/launch.json
+/admin-station/!.vscode/extensions.json
+/admin-station/.history/*
+
+# misc
+/admin-station/.sass-cache
+/admin-station/connect.lock
+/admin-station/coverage
+/admin-station/libpeerconnection.log
+/admin-station/npm-debug.log
+/admin-station/yarn-error.log
+/admin-station/testem.log
+/admin-station/typings
+
+# System Files
+/admin-station/.DS_Store
+/admin-station/Thumbs.db
+
+# Miscellaneous
+/mobile-guide/a*.class
+/mobile-guide/*.log
+/mobile-guide/*.pyc
+/mobile-guide/*.swp
+/mobile-guide/.DS_Store
+/mobile-guide/.atom/
+/mobile-guide/.buildlog/
+/mobile-guide/.history
+/mobile-guide/.svn/
+
+# IntelliJ related
+/mobile-guide/*.iml
+/mobile-guide/*.ipr
+/mobile-guide/*.iws
+/mobile-guide/.idea/
+
+# The .vscode folder contains launch configuration and tasks you configure in
+# VS Code which you may wish to be included in version control, so this line
+# is commented out by default.
+#.vscode/
+
+# Flutter/Dart/Pub related
+**/doc/api/
+**/ios/Flutter/.last_build_id
+/mobile-guide/.dart_tool/
+/mobile-guide/.flutter-plugins
+/mobile-guide/.flutter-plugins-dependencies
+/mobile-guide/.packages
+/mobile-guide/.pub-cache/
+/mobile-guide/.pub/
+/mobile-guide/build/
+
+# Web related
+/mobile-guide/lib/generated_plugin_registrant.dart
+
+# Symbolication related
+/mobile-guide/app.*.symbols
+
+# Obfuscation related
+/mobile-guide/app.*.map.json
+
+

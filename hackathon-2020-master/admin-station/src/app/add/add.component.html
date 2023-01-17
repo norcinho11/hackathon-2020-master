@@ -1,0 +1,36 @@
+<div class="container my-3">
+  <mat-card class="mat-elevation-z4 col-8 m-auto">
+    <mat-form-field appearance="outline">
+      <mat-label>Id</mat-label>
+      <input
+        placeholder="Enter id"
+        aria-label="id"
+        matInput
+        name="id"
+        [(ngModel)]="id"
+        required
+      />
+      <mat-hint>Id of bt beacon</mat-hint>
+    </mat-form-field>
+    <mat-form-field style="display: block" appearance="outline">
+      <mat-label>Description</mat-label>
+      <textarea
+        placeholder="Enter description"
+        aria-label="description"
+        matInput
+        name="description"
+        [(ngModel)]="description"
+        required
+      >
+      </textarea>
+      <mat-hint>Brief description</mat-hint>
+    </mat-form-field>
+    <ngp-image-picker
+      [_config]="imagePickerConf"
+      ($imageChanged)="onImageChange($event)"
+    ></ngp-image-picker>
+    <button mat-raised-button color="primary" (click)="submitToFirebase()">
+      Submit
+    </button>
+  </mat-card>
+</div>
